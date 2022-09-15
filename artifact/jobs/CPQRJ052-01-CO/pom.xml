@@ -19,6 +19,11 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.bbva.elara</groupId>
+			<artifactId>elara-batch-contextUtils</artifactId>
+			<version>${apx.core.batch.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.bbva.elara</groupId>
 			<artifactId>elara-batch-common</artifactId>
 			<version>${apx.core.batch.version}</version>
 		</dependency>

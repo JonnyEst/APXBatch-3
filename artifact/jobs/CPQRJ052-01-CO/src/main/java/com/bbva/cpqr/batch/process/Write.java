@@ -23,29 +23,16 @@ public class Write implements Tasklet {
     @Override
     public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext)  throws IOException, ParseException {
 
-        GrantingTicket grantingTicket = cpqrR052.execute("12000038","NDIyNDBmOWI2YjU3");
+        GrantingTicket grantingTicket = cpqrR052.execute("12000038", "NDIyNDBmOWI2YjU3");
         OutAutehenticationGranting outAutehenticationGranting = cpqrR052.OutExecute(grantingTicket);
 
 
-        String path= inPath+"/HolaMundo.csv";
-
-        if(grantingTicket.getAuthentication().getConsumerID().isEmpty() && grantingTicket.getAuthentication().getAuthenticationData().isEmpty()){
-
-        }else{
-            try (BufferedWriter escritura = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path), StandardCharsets.ISO_8859_1))) {
-                escritura.write(outAutehenticationGranting.getOutAuthentication().getAuthenticationState());
-
-            }
-
+        try (BufferedWriter escritura = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(inPath), StandardCharsets.ISO_8859_1))) {
+            escritura.write(outAutehenticationGranting.getOutAuthentication().getAuthenticationState());
         }
 
         return RepeatStatus.FINISHED;
 
-    }
-
-    public String outStatus(OutAutehenticationGranting outAutehenticationGranting){
-
-        return "OK";
     }
 
     public void setInPath(String inPath) {

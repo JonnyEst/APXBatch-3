@@ -42,12 +42,15 @@ public class CPQRR052Impl extends CPQRR052Abstract {
 		List<AuthenticationData> authenticationDataV1 = new ArrayList<>();
 		authenticationDataV1.add(authenticationData);
 
-		authentication.setUserID("ZM12038");
+		GrantingTicket grantingTicket = new GrantingTicket();
+
+		//authentication.setUserID("ZM12038");
+		authentication.setUserID(escrituraUserID(grantingTicket));
 		authentication.setConsumerID(consumerId);
 		authentication.setAuthenticationType("04");
 		authentication.setAuthenticationData(authenticationDataV1);
 
-		GrantingTicket grantingTicket = new GrantingTicket();
+
 
 		grantingTicket.setAuthentication(authentication);
 
@@ -77,6 +80,12 @@ public class CPQRR052Impl extends CPQRR052Abstract {
 			LOGGER.info("LOGGER_BUSINESS_EXCEPTION", ex.getMessage());
 		}
 		return outAutehenticationGranting;
+	}
+
+	public String escrituraUserID(GrantingTicket grantingTicket){
+		String userId=grantingTicket.getAuthentication().getUserID();
+		String resultUserID= "ZM"+userId.substring(0,2)+userId.substring(6,8);
+		return resultUserID;
 	}
 
 }

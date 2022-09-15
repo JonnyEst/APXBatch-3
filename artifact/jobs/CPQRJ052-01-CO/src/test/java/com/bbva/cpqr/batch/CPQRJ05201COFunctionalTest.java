@@ -31,22 +31,12 @@ public class CPQRJ05201COFunctionalTest{
 		//Without parameters (use this implementation if job not need parameters)
 
 		final HashMap<String, JobParameter> parameters = new HashMap<String, JobParameter>();
-
-		final JobParameter pathInJobParameter = new JobParameter("src/test/resources/datsal");
+		final JobParameter pathInJobParameter = new JobParameter("src/test/resources/datsal/HolaMundo.csv");
 		parameters.put("inPath", pathInJobParameter);
 
 		final JobParameters jobParameters = new JobParameters(parameters);
 		final JobExecution jobExecution = jobLauncherTestUtils.launchJob(jobParameters);
 
-		//With parameters (use this implementation if job needs parameters comment first implementation)
-		/*********************** Parameters Definition ***********************/
-		//First parameter
-//		final JobParameter jobParameter = new JobParameter("ParamValue");
-		//Add parameters to job
-//		final HashMap<String, JobParameter> parameters = new HashMap<String, JobParameter>();
-//		parameters.put("paramName", jobParameter);
-//		final JobParameters jobParameters = new JobParameters(parameters);
-//		final JobExecution jobExecution = jobLauncherTestUtils.launchJob(jobParameters);
 		
 		//TODO implements job launch test Assert's
 		Assert.assertTrue(jobExecution.getExitStatus().equals(ExitStatus.COMPLETED));
